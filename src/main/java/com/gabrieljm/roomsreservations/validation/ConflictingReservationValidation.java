@@ -12,7 +12,7 @@ public class ConflictingReservationValidation implements ReservationValidation {
     private ReservationRepository reservationRepository;
 
     public void validate(ReservationSolicitationDto dto) {
-        boolean hasConflictingReservation = reservationRepository.existsByRoomIdAndStartTimeBeforeAndEndTimeAfter(
+        boolean hasConflictingReservation = reservationRepository.existsConflictingReservation(
                 dto.roomIdentifier(), dto.endTime(), dto.startTime());
 
         if (hasConflictingReservation) {

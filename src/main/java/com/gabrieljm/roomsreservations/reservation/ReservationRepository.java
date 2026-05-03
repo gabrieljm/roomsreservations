@@ -11,6 +11,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             SELECT 1
               FROM Reservation r
              WHERE r.room.identifier = :roomIdentifier
+               AND r.status != 'CANCELLED'
                AND r.startTime < :newEndTime
                AND r.endTime > :newStartTime
             """)

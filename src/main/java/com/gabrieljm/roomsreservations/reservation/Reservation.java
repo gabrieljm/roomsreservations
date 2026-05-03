@@ -10,6 +10,16 @@ import java.time.LocalDateTime;
 @Entity
 public class Reservation {
 
+    public Reservation(){}
+
+    public Reservation(Room room, LocalDateTime startTime, LocalDateTime endTime, Integer numberOfParticipants) {
+        this.room = room;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.numberOfParticipants = numberOfParticipants;
+        this.reservationTime = LocalDateTime.now();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,4 +39,7 @@ public class Reservation {
     @Column(nullable = false)
     @Min(1)
     private Integer numberOfParticipants;
+
+    @Column(nullable = false)
+    private LocalDateTime reservationTime;
 }
